@@ -1,58 +1,39 @@
-input.call-picker {
-    border: 1px solid #AAA;
-    color: #666;
-    text-transform: uppercase;
-    float: left;
-    outline: none;
-    padding: 10px;
-    text-transform: uppercase;
-    width: 85px;
+.call-picker{
+    width: 100px;
+    background-color: white;
+    height: 30px;
 }
-
-.color-picker {
-    width: 130px;
-    background: #F3F3F3;
-    height: 81px;
-    padding: 5px;
-    border: 5px solid #fff;
-    box-shadow: 0px 0px 3px 1px #DDD;
-    position: absolute;
-    top: 61px;
-    left: 2px;
+.stroke_width_picker{
+    width: 100px;
+    background-color: white;
+    height: 30px;
 }
-
-.color-holder {
-    background: #fff;
-    cursor: pointer;
-    border: 1px solid #AAA;
-    width: 40px;
-    height: 36px;
-    float: left;
-    margin-left: 5px;
+.container p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: white;
+    font-size: 16px;
+    margin-top: 50px;
 }
-
-input.stroke_width_picker {
-    border: 1px solid #AAA;
-    color: #666;
-    text-transform: uppercase;
-    float: left;
-    outline: none;
-    padding: 10px;
-    text-transform: uppercase;
-    width: 85px;
-}
-
-p {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    color: #DDD;
-}
-
 button {
-    margin-left: 1rem;
+    border: 1.5px solid white;
+    background: transparent;
+    font-size: 140%;
+    padding: 5px 16px;
+    margin-right: 15px;
+    color: white;
+    font-weight: 300;
+    transition: background-color 0.2s ease-in-out;
 }
 
-html, body {
-    height: 100%;
-    background-color: #373d55;
+button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+.container{
+    background-color: #024B00;
+}
+html, body{
+    background-color: #024B00 !important;
 }
