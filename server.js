@@ -54,6 +54,7 @@ io.sockets.on('connection', (socket) => {
     socket.on('mouse', (data) => socket.broadcast.emit('mouse', data))
 
     socket.on('disconnect', () => console.log('Client has disconnected'))
+    socket.on('clearToServer', ()=>socket.broadcast.emit('clearToClients'))
 })
 
 server.listen(port)

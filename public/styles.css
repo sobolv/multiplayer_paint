@@ -15,6 +15,9 @@
     font-size: 16px;
     margin-top: 50px;
 }
+.container{
+    margin-bottom: 30px;
+}
 button {
     border: 1.5px solid white;
     background: transparent;
@@ -36,4 +39,7 @@ button:hover {
 }
 html, body{
     background-color: #024B00 !important;
+}
+#defaultCanvas0{
+    margin-top: 40px;
 }
