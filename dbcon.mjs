@@ -17,3 +17,5 @@ const query = (command, method = 'all') => {
 db.serialize(async () => {
     await query("CREATE TABLE IF NOT EXISTS users (socket_id text, start_datetime text, end_datetime text)", 'run');
 });
+
+module.exports = db
