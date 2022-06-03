@@ -13,7 +13,7 @@ if (!dbExists) {
 var db = new sqlite3.Database(dbFile);
 
 if (!dbExists) {
-    console.log("ggggggg")
+    db.run("CREATE TABLE IF NOT EXISTS users (socket_id text, start_datetime text, end_datetime text)");
 }
 const normalizePort = val => {
     const port = parseInt(val, 10)
