@@ -48,13 +48,15 @@ server.on('listening', () => {
 // Web sockets
 const io = require('socket.io')(server)
 
-io.sockets.on('connection', (socket) => {
+io.sockets.on('connection', async (socket) => {
     console.log('Client connected: ' + socket.id)
+    // await query(`INSERT INTO users
+    //              VALUES ("${socket.id}", "${new Date()}", "${new Date()}")`, 'run');
 
     socket.on('mouse', (data) => socket.broadcast.emit('mouse', data))
 
     socket.on('disconnect', () => console.log('Client has disconnected'))
-    socket.on('clearToServer', ()=>socket.broadcast.emit('clearToClients'))
+    socket.on('clearToServer', () => socket.broadcast.emit('clearToClients'))
 })
 
 server.listen(port)
