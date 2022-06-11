@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Websockets drawing app</title>
+  <title>Multiply paint</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
@@ -16,18 +16,19 @@
 <body>
 <div class="container">
   <div class="row">
-    <div class="color-block col-6">
+    <div class="color-block col-5">
       <p>Оберіть колір</p>
       <input type="color" name="custom_color" id="pickcolor" class="call-picker" />
       <button id="color-btn">Змінити</button>
     </div>
-    <div class="width-block col-6">
+    <div class="width-block col-5">
       <p>Оберіть ширину лінії</p>
       <input type="text" name="stroke_width" placeholder="4" id="stroke-width-picker" class="stroke_width_picker" />
       <button id="stroke-btn">Змінити</button>
     </div>
+    <button class="col-2" onclick="clearFunc()" id="clear-btn">Очистити</button>
   </div>
-  <button  onclick="clearFunc()" id="clear-btn">Clear</button>
+
 </div>
 
 </body>
