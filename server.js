@@ -6,6 +6,7 @@ var fs = require('fs');
 var dbFile = './users.db';
 var dbExists = fs.existsSync(dbFile);
 
+//Під'єднання до бази даних
 if (!dbExists) {
     fs.openSync(dbFile, 'w');
 }
@@ -59,11 +60,13 @@ server.on('listening', () => {
 })
 
 
-// Web sockets
+//Сокет
 const io = require('socket.io')(server)
 
+//Додавання слухачів до сокета для реагування на події
 io.sockets.on('connection', async (socket) => {
     console.log('Client connected: ' + socket.id)
+    //Додадавання socket id клієнта та часу під'єднання до бази даних
     db.run(`INSERT INTO users
                  VALUES ("${socket.id}", "${new Date()}", "")`);
 
@@ -71,6 +74,7 @@ io.sockets.on('connection', async (socket) => {
 
     socket.on('disconnect', () => {
         console.log('Client has disconnected')
+        //Додавання часу від'єднання клієнту до бази даних
         let socket_id = socket.id
         db.run(`UPDATE users SET end_datetime = "${new Date()}" WHERE socket_id = "${socket_id}"`)
     })

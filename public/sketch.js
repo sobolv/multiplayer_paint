@@ -1,21 +1,18 @@
-let socket
-let color = '#000'
-let strokeWidth = 4
+let socket //змінна сокету
+let color = '#000'  //змінна кольору
+let strokeWidth = 4  //змінна ширини лінії
 let cv
-let cv_context;
+
 function setup() {
-    // Creating canvas
+    //Створення полотна
     cv = createCanvas(windowWidth / 1.2, windowHeight / 1.5)
     centerCanvas()
-    // cv_context = cv.getContext('2d');
-
-
     cv.background(255, 255, 255)
 
-    // Start the socket connection
+    //Ініціалізація сокету
     socket = io.connect('http://localhost:3000')
 
-    // Callback function
+    //Отрмання даних з інших сокетів
     socket.on('mouse', data => {
         stroke(data.color)
         strokeWeight(data.strokeWidth)
@@ -23,7 +20,7 @@ function setup() {
     })
     socket.on('clearToClients', () => cv.background(255, 255, 255))
 
-    // Getting our buttons and the holder through the p5.js dom
+    //Створення кнопок для роботи
     const color_picker = select('#pickcolor')
     const color_btn = select('#color-btn')
     const color_holder = select('#color-holder')
@@ -31,15 +28,14 @@ function setup() {
 
     const stroke_width_picker = select('#stroke-width-picker')
     const stroke_btn = select('#stroke-btn')
-    //
-    // Adding a mousePressed listener to the button
+
+    //Створення слухача для кнопки зміни кольору
     color_btn.mousePressed(() => {
         color = color_picker.value()
     })
 
-    // Adding a mousePressed listener to the button
+    //Створення слухача для кнопки зміни товщини лінії
     stroke_btn.mousePressed(() => {
-
         if(stroke_width_picker.value() < 1){
             console.log('Enter a valid size')
         }
@@ -53,11 +49,6 @@ function clearFunc(){
     socket.emit('clearToServer')
 }
 
-// function windowResized() {
-//     centerCanvas()
-//     cv.resizeCanvas(windowWidth / 2, windowHeight / 2, false)
-// }
-
 
 function centerCanvas() {
     const x = (windowWidth - width) / 2
@@ -65,18 +56,17 @@ function centerCanvas() {
     cv.position(x, y)
 }
 
-
+//Реалізація малювання
 function mouseDragged() {
-    // Draw
     stroke(color)
     strokeWeight(strokeWidth)
     line(mouseX, mouseY, pmouseX, pmouseY)
 
-    // Send the mouse coordinates
+    //Передача координат миші
     sendmouse(mouseX, mouseY, pmouseX, pmouseY)
 }
 
-// Sending data to the socket
+// Функція передачі координат до сокета
 function sendmouse(x, y, pX, pY) {
     const data = {
         x: x,
@@ -86,6 +76,5 @@ function sendmouse(x, y, pX, pY) {
         color: color,
         strokeWidth: strokeWidth,
     }
-
     socket.emit('mouse', data)
 }
